@@ -12,11 +12,12 @@ app.get('/status', (req, res) => {
 
 app.get('/weather', async (req, res) => {
     const weather = await axios.get("http://api.weatherapi.com/v1/current.json?key=3b6c1ada6d9a4cf5b67141034221210&q=Paris&aqi=no");
-    return res.status(200).send(`temp_in_celsius : ${weather.data.current.temp_c}`)
+    const weatherParis = weather.data.current.temp_c
+    return res.status(200).send({temp_in_celsius : weatherParis});
 })
 
 app.listen(port, () => {
-    console.log(typeof port)
+    console.log(port)
 })
 
 
